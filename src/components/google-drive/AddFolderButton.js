@@ -1,11 +1,26 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useState} from 'react'
+import { Button, Modal } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFolderPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function AddFolderButton() {
-    function openModal() {}
+    const [open, setOpen] = useState(false)
+    function openModal() {
+        setOpen(true)
+    }
+
+    function closeModal(){
+        setOpen(false)
+    }
+
   return (
+    <>
     <Button onClick={openModal} variant="outline-success" size="sm">
-    AddFolderButton
+    <FontAwesomeIcon icon={faFolderPlus}/>
     </Button>
+    <Modal>
+
+    </Modal>
+    </>
   )
 }
