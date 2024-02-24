@@ -1,7 +1,19 @@
-import { useReducer } from "react"
+import { useEffect, useReducer } from "react"
 
-function reducer() {
+const ACTIONS = {
+    SELECT_FOLDER: 'select-folder'
+}
 
+function reducer(state, { type, payload }) {
+    switch (type) {
+        case ACTIONS.SELECT_FOLDER:
+            return {
+                folderId: payload.folderId,
+                folder: payload.folder,
+                childFiles: [],
+                childFolders: []
+            }
+    }
 }
 
 export function uesFolder(folderId = null, folder = null){
@@ -11,4 +23,9 @@ export function uesFolder(folderId = null, folder = null){
         childFolders: [],
         childFiles: []
     })
+
+    useEffect(() => {
+        dispatch({ type: ACTIONS.SELECT_FOLDER, payload: { folderId, 
+            folder} })
+    }, [folderId, folder])
 }
