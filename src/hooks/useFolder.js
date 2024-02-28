@@ -25,7 +25,7 @@ function reducer(state, { type, payload }) {
     }
 }
 
-export function uesFolder(folderId = null, folder = null){
+export function useFolder(folderId = null, folder = null){
     const [state, dispatch] = useReducer(reducer, {
         folderId, 
         folder,
@@ -46,4 +46,6 @@ export function uesFolder(folderId = null, folder = null){
             })
         }
     }, [folderId])
+
+    return state
 }
