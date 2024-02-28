@@ -1,8 +1,12 @@
 import { useEffect, useReducer } from "react"
 
 const ACTIONS = {
-    SELECT_FOLDER: 'select-folder'
+    SELECT_FOLDER: "select-folder",
+    UPDATE_FOLDER: "update-folder",
+
 }
+
+const ROOT_FOLDER = { name: "Root", id: null, path: [] }
 
 function reducer(state, { type, payload }) {
     switch (type) {
@@ -12,6 +16,11 @@ function reducer(state, { type, payload }) {
                 folder: payload.folder,
                 childFiles: [],
                 childFolders: []
+            }
+        case ACTIONS.UPDATE_FOLDER:
+            return {
+                ...state,
+                folder: payload.folder
             }
     }
 }
@@ -28,4 +37,13 @@ export function uesFolder(folderId = null, folder = null){
         dispatch({ type: ACTIONS.SELECT_FOLDER, payload: { folderId, 
             folder} })
     }, [folderId, folder])
+
+    useEffect(() => {
+        if (folderId == null){
+            return dispatch({
+                type: ACTIONS.UPDATE_FOLDER,
+                payload: { folder: ROOT_FOLDER }
+            })
+        }
+    }, [folderId])
 }
