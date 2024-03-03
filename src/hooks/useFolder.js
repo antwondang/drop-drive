@@ -51,8 +51,12 @@ export function useFolder(folderId = null, folder = null){
             .doc(folderId)
             .get()
             .then(doc => {
-                console.log(doc)
-        }).catch(() => {
+                dispatch({
+                    type: ACTIONS.UPDATE_FOLDER,
+                    payload: { folder: database.formatDoc(doc) }
+                })
+        })
+        .catch(() => {
             dispatch({
                 type: ACTIONS.UPDATE_FOLDER,
                 payload: { folder: ROOT_FOLDER }
