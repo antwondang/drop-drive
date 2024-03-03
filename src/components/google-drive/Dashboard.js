@@ -6,16 +6,16 @@ import { useFolder } from '../../hooks/useFolder'
 import Folder from './Folder'
 
 export default function Dashboard() {
-    const { folder, childFolder } = useFolder()
+    const { folder, childFolders } = useFolder()
 
   return (
     <>
     <Navbar/>
     <Container fluid>
         <AddFolderButton currentFolder={folder}/>
-        {childFolder.length > 0 && (
+        {childFolders.length > 0 && (
             <div className="d-flex flex-wrap">
-                {childFolder.map(folder => {
+                {childFolders.map(childFolder => {
                     <div key={folder.id} style={{ maxWidth: '250px' }}
                     className="p-2">
 
