@@ -5,6 +5,12 @@ import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'react-bootstrap'
 
 export default function Folder({ folder }) {
-  return <Button as={Link}>
-  <FontAwesomeIcon icon={faFolder} className='mr-2'/> {folder.name}</Button>
+  return (
+    <Button 
+    to={`/folder/${folder.id}`} 
+    variant="outline-dark" 
+    classname="text-truncate w-100" 
+    as={Link}>
+  <FontAwesomeIcon icon={faFolder} classname='mr-2'/> {folder.name}</Button>
+  )
 }
