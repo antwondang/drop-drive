@@ -30,6 +30,8 @@ function reducer(state, { type, payload }) {
                 ...state,
                 childFolders: payload.childFolders
             }
+        default:
+            return state
     }
 }
 
@@ -74,16 +76,18 @@ export function useFolder(folderId = null, folder = null){
     }, [folderId])
 
     useEffect(() => {
-        database.folders
-        .where("parentId", "==", folderId)
-        .where("userId", "==", currentUser.uid)
-        .orderBy("createdAt")
-        .onSnapshot(snapshot => {
-            dispatch({
-                type: ACTIONS.SET_CHILD_FOLDERS,
-                payload: {childFolders: snapshot.docs.map(database.formatDoc) }
+        return (
+            database.folders
+            .where("parentId", "==", folderId)
+            .where("userId", "==", currentUser.uid)
+            .orderBy("createdAt")
+            .onSnapshot(snapshot => {
+                dispatch({
+                    type: ACTIONS.SET_CHILD_FOLDERS,
+                    payload: { childFolders: snapshot.docs.map(database.formatDoc) }
+                })
             })
-        })
+        )
     }, [folderId, currentUser])
 
     return state
