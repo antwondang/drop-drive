@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import { Container } from 'react-bootstrap'
 import AddFolderButton from './AddFolderButton'
-import { useFolder } from '../../hooks/useFolder'
+import { useFolder } from '../../hook/useFolder'
 import Folder from './Folder'
 
 export default function Dashboard() {
