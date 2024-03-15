@@ -6,6 +6,7 @@ import { useFolder } from '../../hook/useFolder'
 import Folder from './Folder'
 import { useParams, useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import FolderBreadcrumbs from './FolderBreadcrumbs'
+import AddFileButton from './AddFileButton'
 
 export default function Dashboard() {
     const { folderId } = useParams()
@@ -18,6 +19,7 @@ export default function Dashboard() {
     <Container fluid>
         <div className='d-flex align-items-center'>
             <FolderBreadcrumbs currentFolder={folder}/>
+            <AddFileButton currentFolder={folder}/>
             <AddFolderButton currentFolder={folder}/>
         </div>
         
