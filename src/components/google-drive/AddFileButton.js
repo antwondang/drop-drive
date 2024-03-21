@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { storage } from '../../firebase'
+import { ROOT_FOLDER } from '../../hook/useFolder'
 
 
 export default function AddFileButton({ currentFolder }) {
@@ -12,11 +13,10 @@ export default function AddFileButton({ currentFolder }) {
         const file = e.target.files[0]
         if (currentFolder == null || file == null) return
 
-        const filePath = 
-        currentFolder.path.length > 0 
-            ? `${currentFolder.path.join('/')}/${file.name}` 
-            : file.name
-
+        const filePath = currentFolder === ROOT_FOLDER 
+        ? `${currentFolder.path.join('/')}/${file.name}`
+        : `${currentFolder.path.join('/')}/${currentFolder.name}/${file.name}`
+            
         const uploadTask = storage
             .ref(`/files/${currentUser.uid}/${filePath}`)
             .put(file)
