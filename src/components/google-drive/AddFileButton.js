@@ -18,7 +18,7 @@ export default function AddFileButton({ currentFolder }) {
             : file.name
 
         const uploadTask = storage
-            .ref(`/files/${currentUser.id}/${filePath}`)
+            .ref(`/files/${currentUser.uid}/${filePath}`)
             .put(file)
     }
 
