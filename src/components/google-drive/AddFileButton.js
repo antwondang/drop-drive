@@ -2,7 +2,7 @@ import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { useAuth } from '../../contexts/AuthContext'
-import { storage } from '../../firebase'
+import { storage, database } from '../../firebase'
 import { ROOT_FOLDER } from '../../hook/useFolder'
 
 
@@ -20,6 +20,22 @@ export default function AddFileButton({ currentFolder }) {
         const uploadTask = storage
             .ref(`/files/${currentUser.uid}/${filePath}`)
             .put(file)
+
+        uploadTask.on('state_changed', snapshot => {
+
+        }, () => {
+
+        }, () => {
+            uploadTask.snapshot.ref.getDownloadURL().then(url => {
+                database.files.add({
+                    url: url,
+                    name: file.name,
+                    createdAt: database.getCurrentTimestamp(),
+                    folderId: currentFolder.id,
+                    userId: currentUser.uid,
+                })
+            })
+        })
     }
 
 
