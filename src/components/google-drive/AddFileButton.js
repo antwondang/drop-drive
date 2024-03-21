@@ -1,17 +1,28 @@
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { storage, database } from '../../firebase'
 import { ROOT_FOLDER } from '../../hook/useFolder'
+import { v4 as uuidV4 } from 'uuid'
 
 
 export default function AddFileButton({ currentFolder }) {
+    const [uploadingFiles, setUploadingFiles] = useState([])
     const { currentUser } = useAuth()
 
     function handleUpload(e) {
         const file = e.target.files[0]
         if (currentFolder == null || file == null) return
+
+        const id = uuidV4()
+        setUploadingFiles(prevUploadingFiles => [
+            ...prevUploadingFiles,
+            { id: id,
+            name: file.name,
+            progress: 0,
+            error: false,}
+        ])
 
         const filePath = currentFolder === ROOT_FOLDER 
         ? `${currentFolder.path.join('/')}/${file.name}`
