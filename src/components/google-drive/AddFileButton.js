@@ -35,7 +35,15 @@ export default function AddFileButton({ currentFolder }) {
             .put(file)
 
         uploadTask.on('state_changed', snapshot => {
-
+            const progress = snapshot.bytesTransferred / snapshot.totalBytes
+            setUploadingFiles(prevUploadingFiles => {
+                return prevUploadingFiles.map(uploadFile => {
+                    if (uploadFile.id === id) {
+                        return { ...uploadFile, progress: progress}
+                    }
+                    return uploadFile
+                })
+            })
         }, () => {
 
         }, () => {
