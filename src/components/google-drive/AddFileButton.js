@@ -47,6 +47,12 @@ export default function AddFileButton({ currentFolder }) {
         }, () => {
 
         }, () => {
+            setUploadingFiles(prevUploadingFiles =>{
+                return prevUploadingFiles.filter(uploadFile => {
+                    return uploadFile.id !== id
+                })
+            })
+
             uploadTask.snapshot.ref.getDownloadURL().then(url => {
                 database.files.add({
                     url: url,
