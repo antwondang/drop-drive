@@ -73,7 +73,7 @@ export default function AddFileButton({ currentFolder }) {
             }}>
                 {uploadingFiles.map(file => (
                     <Toast key={file.id}>
-                        <Toast.Header className='text-truncate w-100 d-block'>
+                        <Toast.Header closeButton={file.error} className='text-truncate w-100 d-block'>
                             {file.name}
                         </Toast.Header>
                         <Toast.Body>
