@@ -94,7 +94,13 @@ export default function AddFileButton({ currentFolder }) {
                 maxWidth: '250px'
             }}>
                 {uploadingFiles.map(file => (
-                    <Toast key={file.id}>
+                    <Toast key={file.id} onClose={() => {
+                        setUploadingFiles(prevUploadingFiles => {
+                            return prevUploadingFiles.filter(uploadFile => {
+                                return uploadFile.id !== file.id
+                            })
+                        })
+                    }}>
                         <Toast.Header closeButton={file.error} className='text-truncate w-100 d-block'>
                             {file.name}
                         </Toast.Header>
