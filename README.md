@@ -1,3 +1,6 @@
+This is the google-drive like project called Drop-Drive, where you would drop files and pictures
+within your cloud-like drive!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
