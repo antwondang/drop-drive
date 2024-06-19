@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/drop-drive/static/css/main.9396d26c.css",
+    "main.js": "/drop-drive/static/js/main.888685e1.js",
+    "index.html": "/drop-drive/index.html",
+    "main.9396d26c.css.map": "/drop-drive/static/css/main.9396d26c.css.map",
+    "main.888685e1.js.map": "/drop-drive/static/js/main.888685e1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9396d26c.css",
+    "static/js/main.888685e1.js"
+  ]
+}
